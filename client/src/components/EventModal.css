@@ -108,7 +108,7 @@
 
 .form-input:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+  box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
 }
 
 .form-input::placeholder {

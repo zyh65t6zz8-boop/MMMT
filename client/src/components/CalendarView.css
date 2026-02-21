@@ -96,7 +96,7 @@
 }
 
 .filter-btn.active {
-  background: rgba(255, 107, 0, 0.12);
+  background: rgba(204, 0, 0, 0.12);
   border-color: var(--orange);
   color: var(--orange);
 }
@@ -198,8 +198,8 @@
 }
 
 .cal-cell.selected {
-  background: rgba(255, 107, 0, 0.06);
-  outline: 2px solid rgba(255, 107, 0, 0.3);
+  background: rgba(204, 0, 0, 0.06);
+  outline: 2px solid rgba(204, 0, 0, 0.3);
   outline-offset: -2px;
 }
 
