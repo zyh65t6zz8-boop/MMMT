@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Login.css';
 
-const API_BASE = import.meta.env.DEV ? 'http://localhost:3001' : '';
+const API_BASE = '';
 
 export default function Login({ onLogin }) {
   const [name, setName] = useState('');
