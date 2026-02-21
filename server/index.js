@@ -27,6 +27,17 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 }
 
+// ── Auth ─────────────────────────────────────────────────────────
+app.post('/api/auth', (req, res) => {
+  const { passcode } = req.body;
+  const expected = process.env.TEAM_PASSCODE || 'mmmt2026';
+  if (passcode === expected) {
+    res.json({ ok: true });
+  } else {
+    res.status(401).json({ ok: false, error: 'Incorrect team passcode.' });
+  }
+});
+
 // ── Message routes ──────────────────────────────────────────────
 app.get('/api/messages', (req, res) => {
   const limit = parseInt(req.query.limit) || 100;

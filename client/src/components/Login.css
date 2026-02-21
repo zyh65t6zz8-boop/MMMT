@@ -90,6 +90,10 @@
   gap: 8px;
 }
 
+.login-label + .login-input {
+  margin-bottom: 8px;
+}
+
 .login-label {
   font-size: 12px;
   font-weight: 600;
