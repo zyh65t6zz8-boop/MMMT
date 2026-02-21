@@ -1,0 +1,21 @@
+{
+  "name": "mmmt-chat",
+  "version": "1.0.0",
+  "description": "Moto Mouth Mini Team - Team Chat & Race Calendar App",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "concurrently \"nodemon server/index.js\" \"cd client && npm run dev\"",
+    "build": "cd client && npm run build",
+    "install:all": "npm install && cd client && npm install"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.3"
+  }
+}
