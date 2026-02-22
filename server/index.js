@@ -12,13 +12,13 @@ const PORT = process.env.PORT || 3001;
 
 const io = new Server(server, {
   cors: {
-    origin: process.env.NODE_ENV === 'production' ? false : 'http://localhost:5173',
+    origin: process.env.NODE_ENV === 'production' ? false : true,
     methods: ['GET', 'POST'],
   },
 });
 
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? false : 'http://localhost:5173',
+  origin: process.env.NODE_ENV === 'production' ? false : true,
 }));
 app.use(express.json());
 
