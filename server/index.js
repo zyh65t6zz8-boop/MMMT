@@ -1,14 +1,37 @@
 const express = require('express');
 const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const path = require('path');
 const db = require('./db');
 
 const app = express();
-const server = http.createServer(app);
 
 const PORT = process.env.PORT || 3001;
+const isProduction = process.env.NODE_ENV === 'production';
+
+let server;
+if (isProduction) {
+  const certDir = process.env.CERT_DIR || '/etc/ssl/motomouthminiteam';
+  const sslOptions = {
+    key: fs.readFileSync(path.join(certDir, 'privkey.pem')),
+    cert: fs.readFileSync(path.join(certDir, 'fullchain.pem')),
+  };
+  server = https.createServer(sslOptions, app);
+
+  // HTTP → HTTPS redirect
+  const httpApp = express();
+  httpApp.use((req, res) => {
+    res.redirect(301, `https://${req.headers.host}${req.url}`);
+  });
+  http.createServer(httpApp).listen(80, () => {
+    console.log('HTTP → HTTPS redirect listening on port 80');
+  });
+} else {
+  server = http.createServer(app);
+}
 
 const io = new Server(server, {
   cors: {
@@ -136,6 +159,8 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`MMMT server running on http://localhost:${PORT}`);
+const listenPort = isProduction ? 443 : PORT;
+server.listen(listenPort, () => {
+  const scheme = isProduction ? 'https' : 'http';
+  console.log(`MMMT server running on ${scheme}://localhost:${listenPort}`);
 });
