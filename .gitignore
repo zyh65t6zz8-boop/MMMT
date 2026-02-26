@@ -6,3 +6,6 @@ client/dist/
 *.db-wal
 .env
 .DS_Store
+# Capacitor generated native projects (run `npx cap add ios` locally on Mac)
+client/ios/
+client/android/
